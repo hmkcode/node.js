@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<title>Real Time Counter</title>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+  var socket = io.connect('http://localhost:8080');
+  
+  socket.on('server-emit', function (data) {
+    document.getElementById('msg').innerHTML = "<li>"+data.current+"</li>" + document.getElementById('msg').innerHTML;
+    socket.emit('client-emit', {});
+  });
+</script>
+<div id="msg"></div>
+</body>
+</html>
